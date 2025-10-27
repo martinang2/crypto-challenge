@@ -4,7 +4,7 @@ import {
   FiatCurrencyData,
 } from "../types/currency";
 
-export const MOCK_CRYPTO_DATA: CryptoCurrencyData = [
+export const MOCK_CRYPTO_DATA: CurrencyData = [
   {
     id: "BTC",
     name: "Bitcoin",
@@ -77,7 +77,7 @@ export const MOCK_CRYPTO_DATA: CryptoCurrencyData = [
   },
 ];
 
-export const MOCK_FIAT_DATA: FiatCurrencyData = [
+export const MOCK_FIAT_DATA: CurrencyData = [
   {
     id: "SGD",
     name: "Singapore Dollar",

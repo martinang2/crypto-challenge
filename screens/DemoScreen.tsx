@@ -1,19 +1,23 @@
 import { View, Text, Pressable } from "react-native";
 import React, { useState } from "react";
-import { useCurrencies } from "../hooks/useCurrencies";
+import { useCurrencies, useResetCurrencies } from "../hooks/useCurrencies";
 import DemoBar, { CurrencyDatatype } from "../components/DemoBar";
 import { CurrencyData } from "../types/currency";
+import CurrencyTable from "../components/CurrencyTable";
 
 const DemoScreen = () => {
   const [currencyDataType, setCurrencyDataType] = useState<CurrencyDatatype>(
     CurrencyDatatype.FIAT
   );
 
+  const { resetStorage } = useResetCurrencies();
+
   return (
     <View>
       <DemoBar
         current={currencyDataType}
         onPress={(demoButton) => setCurrencyDataType(demoButton)}
+        onReset={resetStorage}
       />
 
       <DemoContent currencyDataType={currencyDataType} />
@@ -42,6 +46,7 @@ const TableWrapper = ({ data }: { data: CurrencyData }) => {
     <View>
       {/* TODO: Search bar */}
       {/* TODO: Table */}
+      <CurrencyTable data={data} />
     </View>
   );
 };

@@ -12,9 +12,11 @@ const demoButtons = Object.values(CurrencyDatatype);
 const DemoBar = ({
   current,
   onPress,
+  onReset,
 }: {
   current: CurrencyDatatype;
   onPress: (currencyDataType: CurrencyDatatype) => void;
+  onReset: () => void;
 }) => {
   return (
     <View
@@ -37,6 +39,12 @@ const DemoBar = ({
           </Pressable>
         ))}
       </View>
+      <Pressable
+        onPress={onReset}
+        style={{ padding: 10, backgroundColor: "#eee", borderRadius: 5 }}
+      >
+        <Text>Reset</Text>
+      </Pressable>
 
       <Text>Current: {current} </Text>
     </View>

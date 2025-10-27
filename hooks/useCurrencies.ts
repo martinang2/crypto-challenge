@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { CurrencyData } from "../types/currency";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
@@ -16,6 +16,7 @@ export function useCurrencies(currencyDataType: CurrencyDatatype) {
 }
 
 // Async storage mock database
+// Suggestion: Use msw instead of Async storage for mocking /api/currency/${currencyDataType} endpoint
 const STORAGE_KEYS = {
   CRYPTO: "@currency/cryto",
   FIAT: "@currency/fiat",
@@ -31,6 +32,7 @@ export const getCurrency = async (
     const data = await AsyncStorage.getItem(getStorageKey(currencyDataType));
 
     if (!data) {
+      await delay();
       await initialize();
       return getCurrencyMockData(currencyDataType);
     }
@@ -48,7 +50,7 @@ const initialize = async (): Promise<void> => {
   await AsyncStorage.multiSet([
     [STORAGE_KEYS.CRYPTO, JSON.stringify(MOCK_CRYPTO_DATA)],
     [STORAGE_KEYS.FIAT, JSON.stringify(MOCK_FIAT_DATA)],
-    [STORAGE_KEYS.ALL, JSON.stringify([MOCK_ALL_CURRENCIES])],
+    [STORAGE_KEYS.ALL, JSON.stringify(MOCK_ALL_CURRENCIES)],
     [STORAGE_KEYS.EMPTY, JSON.stringify([])],
   ]);
 };
@@ -81,4 +83,25 @@ const getStorageKey = (currencyDataType: CurrencyDatatype) => {
     default:
       return STORAGE_KEYS.EMPTY;
   }
+};
+
+export const useResetCurrencies = () => {
+  const queryClient = useQueryClient();
+
+  const resetStorage = async () => {
+    console.log("celar");
+    try {
+      await AsyncStorage.clear();
+
+      Object.values(CurrencyDatatype).forEach((datatype) => {
+        queryClient.resetQueries({
+          queryKey: [`currencies-${datatype}`],
+        });
+      });
+    } catch (error) {
+      throw new Error("Failed to reset storage and queries");
+    }
+  };
+
+  return { resetStorage };
 };
