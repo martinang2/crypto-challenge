@@ -4,8 +4,6 @@ export interface CryptoCurrency {
   symbol: string;
 }
 
-export type CryptoCurrencyData = CryptoCurrency[];
-
 export interface FiatCurrency {
   id: string;
   name: string;
@@ -13,6 +11,6 @@ export interface FiatCurrency {
   code: string;
 }
 
-export type FiatCurrencyData = FiatCurrency[];
+export type Currency = CryptoCurrency | FiatCurrency;
 
-export type CurrencyData = (CryptoCurrency | FiatCurrency)[];
+export type CurrencyData = Currency[];

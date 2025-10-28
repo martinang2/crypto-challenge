@@ -1,4 +1,4 @@
-import { View, Text, Pressable } from "react-native";
+import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
 import React, { useState } from "react";
 import { useCurrencies, useResetCurrencies } from "../hooks/useCurrencies";
 import DemoBar, { CurrencyDatatype } from "../components/DemoBar";
@@ -35,7 +35,12 @@ const DemoContent = ({
   return (
     <>
       {isError && <Text>{error.message}</Text>}
-      {isPending && <Text>Loading...</Text>}
+      {isPending && (
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="#969696ff" />
+          <Text style={styles.loadingText}>Loading...</Text>
+        </View>
+      )}
       {data && <TableWrapper data={data} />}
     </>
   );
@@ -45,10 +50,22 @@ const TableWrapper = ({ data }: { data: CurrencyData }) => {
   return (
     <View>
       {/* TODO: Search bar */}
-      {/* TODO: Table */}
+
       <CurrencyTable data={data} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  loadingContainer: {
+    marginTop: 100,
+    gap: 20,
+    alignItems: "center",
+  },
+  loadingText: {
+    fontSize: 16,
+    color: "#666",
+  },
+});
 
 export default DemoScreen;

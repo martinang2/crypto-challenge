@@ -89,7 +89,6 @@ export const useResetCurrencies = () => {
   const queryClient = useQueryClient();
 
   const resetStorage = async () => {
-    console.log("celar");
     try {
       await AsyncStorage.clear();
 

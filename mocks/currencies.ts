@@ -1,8 +1,4 @@
-import {
-  CurrencyData,
-  CryptoCurrencyData,
-  FiatCurrencyData,
-} from "../types/currency";
+import { CurrencyData } from "../types/currency";
 
 export const MOCK_CRYPTO_DATA: CurrencyData = [
   {
