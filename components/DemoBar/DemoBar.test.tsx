@@ -19,7 +19,9 @@ describe("DemoBar", () => {
   });
 
   it("displays current type", () => {
-    const { getByText } = render(<DemoBar {...props} current={CurrencyDatatype.CRYPTO} />);
+    const { getByText } = render(
+      <DemoBar {...props} current={CurrencyDatatype.CRYPTO} />
+    );
     expect(getByText("data: Crypto")).toBeOnTheScreen();
   });
 

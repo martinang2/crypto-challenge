@@ -6,7 +6,7 @@ import {
   MOCK_CRYPTO_DATA,
   MOCK_FIAT_DATA,
 } from "../mocks/currencies";
-import { CurrencyDatatype } from "../components/DemoBar";
+import { CurrencyDatatype } from "../components/DemoBar/DemoBar";
 
 export function useCurrencies(currencyDataType: CurrencyDatatype) {
   return useQuery<CurrencyData, Error>({

@@ -1,10 +1,10 @@
 import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
 import React, { useMemo, useState } from "react";
 import { useCurrencies, useResetCurrencies } from "../hooks/useCurrencies";
-import DemoBar, { CurrencyDatatype } from "../components/DemoBar";
+import DemoBar, { CurrencyDatatype } from "../components/DemoBar/DemoBar";
 import { CurrencyData } from "../types/currency";
 import { filterCurrencies } from "../utils/filterCurrencies";
-import SearchBar from "../components/SearchBar";
+import SearchBar from "../components/SearchBar/SearchBar";
 import CurrencyTable from "../components/CurrencyTable/CurrencyTable";
 
 const DemoScreen = () => {

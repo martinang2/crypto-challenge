@@ -29,7 +29,9 @@ describe("SearchBar", () => {
   });
 
   it("calls callbacks", () => {
-    const { getByPlaceholderText, getByText } = render(<SearchBar {...props} focused={true} />);
+    const { getByPlaceholderText, getByText } = render(
+      <SearchBar {...props} focused={true} />
+    );
 
     fireEvent(getByPlaceholderText("Search"), "focus");
     expect(props.onFocus).toHaveBeenCalled();
