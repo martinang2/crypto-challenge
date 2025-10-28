@@ -18,6 +18,7 @@ interface SearchBarProps {
   onClose: () => void;
 }
 
+// Upgrades: Would jazz this up with some re-animated
 const SearchBar = ({
   focused,
   value,

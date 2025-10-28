@@ -1,7 +1,7 @@
 import { FlatList, View, Text, StyleSheet } from "react-native";
 import React from "react";
-import { Currency, CurrencyData } from "../types/currency";
 import CurrencyRow from "./CurrencyRow";
+import { Currency, CurrencyData } from "../../types/currency";
 
 const renderItem = ({ item: currency }: { item: Currency }) => {
   // Upgrades: navigate to detail screen

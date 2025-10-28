@@ -3,9 +3,9 @@ import React, { useMemo, useState } from "react";
 import { useCurrencies, useResetCurrencies } from "../hooks/useCurrencies";
 import DemoBar, { CurrencyDatatype } from "../components/DemoBar";
 import { CurrencyData } from "../types/currency";
-import CurrencyTable from "../components/CurrencyTable";
 import { filterCurrencies } from "../utils/filterCurrencies";
 import SearchBar from "../components/SearchBar";
+import CurrencyTable from "../components/CurrencyTable/CurrencyTable";
 
 const DemoScreen = () => {
   const [currencyDataType, setCurrencyDataType] = useState<CurrencyDatatype>(

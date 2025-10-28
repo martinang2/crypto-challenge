@@ -30,12 +30,12 @@ const DemoBar = ({
             <Text>{demoButton}</Text>
           </Pressable>
         ))}
+        <Pressable onPress={onReset} style={styles.button}>
+          <Text>Reset</Text>
+        </Pressable>
       </View>
-      <Pressable onPress={onReset} style={styles.button}>
-        <Text>Reset</Text>
-      </Pressable>
 
-      <Text>Current: {current} </Text>
+      <Text>data: {current} </Text>
     </View>
   );
 };

@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import { Currency } from "../types/currency";
+import { Currency } from "../../types/currency";
 
 interface CurrencyRowProps {
   currency: Currency;
