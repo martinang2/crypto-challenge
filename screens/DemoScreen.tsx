@@ -1,9 +1,11 @@
 import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useCurrencies, useResetCurrencies } from "../hooks/useCurrencies";
 import DemoBar, { CurrencyDatatype } from "../components/DemoBar";
 import { CurrencyData } from "../types/currency";
 import CurrencyTable from "../components/CurrencyTable";
+import { filterCurrencies } from "../utils/filterCurrencies";
+import SearchBar from "../components/SearchBar";
 
 const DemoScreen = () => {
   const [currencyDataType, setCurrencyDataType] = useState<CurrencyDatatype>(
@@ -41,17 +43,36 @@ const DemoContent = ({
           <Text style={styles.loadingText}>Loading...</Text>
         </View>
       )}
-      {data && <TableWrapper data={data} />}
+      {data && <ContentWrapper data={data} />}
     </>
   );
 };
 
-const TableWrapper = ({ data }: { data: CurrencyData }) => {
+const ContentWrapper = ({ data }: { data: CurrencyData }) => {
+  const [searchInput, setSearchInput] = useState("");
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+
+  const searchData = useMemo(
+    () => filterCurrencies(data, searchInput),
+    [data, searchInput]
+  );
+
   return (
     <View>
-      {/* TODO: Search bar */}
-
-      <CurrencyTable data={data} />
+      <SearchBar
+        focused={isSearchFocused}
+        value={searchInput}
+        onFocus={() => setIsSearchFocused(true)}
+        onSearchChange={setSearchInput}
+        // Upgrades: debounce this with lodash debounce for better performance on large datasets
+        onSearchReset={() => setSearchInput("")}
+        onClose={() => setIsSearchFocused(false)}
+      />
+      {isSearchFocused ? (
+        <>{searchInput && <CurrencyTable data={searchData} />}</>
+      ) : (
+        <CurrencyTable data={data} />
+      )}
     </View>
   );
 };
