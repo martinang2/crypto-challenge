@@ -16,7 +16,7 @@ export function useCurrencies(currencyDataType: CurrencyDatatype) {
 }
 
 // Async storage mock database
-// Suggestion: Use msw instead of Async storage for mocking /api/currency/${currencyDataType} endpoint
+// Upgrades: Use msw instead of Async storage for mocking /api/currency/${currencyDataType} endpoint
 const STORAGE_KEYS = {
   CRYPTO: "@currency/cryto",
   FIAT: "@currency/fiat",

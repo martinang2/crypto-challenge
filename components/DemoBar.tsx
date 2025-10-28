@@ -1,4 +1,4 @@
-import { Pressable, View, Text } from "react-native";
+import { Pressable, View, Text, StyleSheet } from "react-native";
 
 export enum CurrencyDatatype {
   CRYPTO = "Crypto",
@@ -19,30 +19,19 @@ const DemoBar = ({
   onReset: () => void;
 }) => {
   return (
-    <View
-      style={{
-        flexDirection: "row",
-        gap: 10,
-        padding: 20,
-        justifyContent: "space-between",
-        alignItems: "center",
-      }}
-    >
-      <View style={{ flexDirection: "row", gap: 10 }}>
+    <View style={styles.container}>
+      <View style={styles.buttonGroup}>
         {demoButtons.map((demoButton) => (
           <Pressable
             key={demoButton}
             onPress={() => onPress(demoButton)}
-            style={{ padding: 10, backgroundColor: "#eee", borderRadius: 5 }}
+            style={styles.button}
           >
             <Text>{demoButton}</Text>
           </Pressable>
         ))}
       </View>
-      <Pressable
-        onPress={onReset}
-        style={{ padding: 10, backgroundColor: "#eee", borderRadius: 5 }}
-      >
+      <Pressable onPress={onReset} style={styles.button}>
         <Text>Reset</Text>
       </Pressable>
 
@@ -50,5 +39,24 @@ const DemoBar = ({
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    gap: 10,
+    padding: 20,
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  buttonGroup: {
+    flexDirection: "row",
+    gap: 10,
+  },
+  button: {
+    padding: 10,
+    backgroundColor: "#eee",
+    borderRadius: 5,
+  },
+});
 
 export default DemoBar;

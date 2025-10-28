@@ -4,9 +4,8 @@ import { Currency, CurrencyData } from "../types/currency";
 import CurrencyRow from "./CurrencyRow";
 
 const renderItem = ({ item: currency }: { item: Currency }) => {
-  const handlePress = (currency: Currency) => {
-    console.log("Pressed:", currency.name);
-  };
+  // Upgrades: navigate to detail screen
+  const handlePress = (currency: Currency) => undefined;
 
   return <CurrencyRow currency={currency} onPress={handlePress} />;
 };
@@ -14,7 +13,7 @@ const renderItem = ({ item: currency }: { item: Currency }) => {
 const renderEmpty = () => {
   return (
     <View style={styles.emptyContainer}>
-      <Text style={styles.emptyText}>No Currency in database</Text>
+      <Text style={styles.emptyText}>No result</Text>
     </View>
   );
 };
